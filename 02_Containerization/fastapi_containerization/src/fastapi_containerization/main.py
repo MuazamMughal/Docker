@@ -57,3 +57,18 @@ def get_session():
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
+
+
+
+@app.post("/todos/", response_model=Todo)
+def create_todo(todo: Todo, session: Annotated[Session, Depends(get_session)])->Todo:
+        session.add(todo)
+        session.commit()
+        session.refresh(todo)
+        return todo
+
+
+@app.get("/todos/", response_model=list[Todo])
+def read_todos(session: Annotated[Session, Depends(get_session)]):
+        todos = session.exec(select(Todo)).all()
+        return todos
