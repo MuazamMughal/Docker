@@ -36,3 +36,16 @@ EXPOSE 8000
 CMD ["poetry" ,"run", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
 
 # furter we explain it furter
+
+# This command tells Docker what to run when the container starts.
+# It uses Poetry to run a FastAPI app via the Uvicorn server.
+
+#CMD [
+ # "poetry",             # Use Poetry to manage the virtual environment and dependencies
+ # "run",                # Run a command inside the Poetry environment
+ # "uvicorn",            # Launch the Uvicorn ASGI server (for serving FastAPI apps)
+ # "app.main:app",       # Path to the FastAPI app instance: 'app' object inside app/main.py
+ #"--host", "0.0.0.0",  # Make the server accessible from outside the container
+ # "--port", "8000",     # Run the server on port 8000
+ # "--reload"            # Enable auto-reload on code changes (useful for development)
+#]
