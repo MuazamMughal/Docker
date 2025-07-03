@@ -20,3 +20,17 @@ RUN apt-get update && apt-get install -y \
 # now we have to install poetry
 RUN pip install poetry
 
+# now we have to copy curent directory to the container
+COPY ./code/
+
+# configeration to skip virtual env inside the container
+RUN poetry config virtualenvs.create false
+
+#install the dependencies
+RUN poetry install
+
+# now we have to expose the port on which the app will run
+EXPOSE 8000
+
+# Run the application CMD ca be overidden when satrting the container
+CMD ["poetry" ,"run", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
