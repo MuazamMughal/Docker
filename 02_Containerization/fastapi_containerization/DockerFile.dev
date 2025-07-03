@@ -1,0 +1,7 @@
+# now we use the offical paython image as aparent for this docker container
+FROM python:3.11
+
+# now we have to lable who is workig on this file 
+
+LABLE maintainer="Muazam Mughal"
+
