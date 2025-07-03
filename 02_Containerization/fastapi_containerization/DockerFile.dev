@@ -5,3 +5,18 @@ FROM python:3.11
 
 LABLE maintainer="Muazam Mughal"
 
+# now we have to set the working dir in which the code will run in container
+
+WORKDIR /code
+
+#now we have to install the requied potential python  packages for this contianer
+
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+
+# now we have to install poetry
+RUN pip install poetry
+
